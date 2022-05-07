@@ -1,0 +1,1 @@
+- Categorizing and POS Tagging with NLTK Python: https://www.learntek.org/blog/categorizing-pos-tagging-nltk-python/
