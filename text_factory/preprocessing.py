@@ -38,7 +38,11 @@ class EnglishPreprocessor(BasePreprocessor):
         self, tokenizer, text_series: pd.Series, pos_list: List[str] = ["NN"]
     ) -> pd.Series:
         def _tokenize(tweet: str):
-            tokens = tokenizer.tokenize(tweet)
+            try:
+                tokens = tokenizer.tokenize(tweet)
+            except AttributeError:
+                tokens = tokenizer(tweet)
+
             tags = nltk.pos_tag(tokens)
 
             filtered_tokens = []
@@ -74,9 +78,9 @@ class EnglishPreprocessor(BasePreprocessor):
     ) -> pd.Series:
         # TODO: support List[str]
         def _lemmatize(tokens: Union[List[str], pd.Series]):
-            return pd.Series(map(lemmatizer.lemmatize, tokens))
+            return " ".join(map(lemmatizer.lemmatize, tokens))
 
-        return token_series.apply(_lemmatize)
+        return token_series.apply(lambda x:x.split()).apply(_lemmatize)
 
     def multiword_tokenize(
         self,
