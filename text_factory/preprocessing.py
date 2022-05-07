@@ -30,6 +30,7 @@ class EnglishPreprocessor(BasePreprocessor):
     """
     Note that you must download relavant dataset before using classes from nltk.
     """
+
     def __init__(self):
         pass
 
@@ -76,3 +77,13 @@ class EnglishPreprocessor(BasePreprocessor):
             return pd.Series(map(lemmatizer.lemmatize, tokens))
 
         return token_series.apply(_lemmatize)
+
+    def multiword_tokenize(
+        self,
+        text_series: pd.Series,
+        multiwords: List[List[str]],
+    ) -> pd.Series:
+        mwe_tokenizer = nltk.tokenize.MWETokenizer(multiwords)
+        return text_series.apply(
+            lambda text: " ".join(mwe_tokenizer.tokenize(text.split()))
+        )
