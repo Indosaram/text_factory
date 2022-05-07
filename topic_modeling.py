@@ -1,9 +1,11 @@
+from typing import List
+
 import pyLDAvis.gensim_models
 from gensim import corpora, models
 
 
 class TopicModeling:
-    def __init__(self, tokenized_text: str):
+    def __init__(self, tokenized_text: List[List[str]]):
         self.tokenized_text = tokenized_text
         self.dictionary = corpora.Dictionary(self.tokenized_text)
         self.corpus = [

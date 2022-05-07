@@ -33,7 +33,7 @@ class EnglishPreprocessor(BasePreprocessor):
 
     def tweet_tokenize(self, tweet_series: pd.Series):
         def tokenize_tweet(tweet: str):
-            tokens = self.tokenizer.tokenize(tweet)
+            tokens = self.tweet_tokenizer.tokenize(tweet)
             filtered_tokens = []
             for token in tokens:
                 if token in string.punctuation:
@@ -47,8 +47,4 @@ class EnglishPreprocessor(BasePreprocessor):
 
             return " ".join(filtered_tokens)
 
-        tokens = []
-        for tweet in tweet_series.apply(tokenize_tweet):
-            tokens.extend(tweet.split())
-
-        return tokens
+        return tweet_series.apply(tokenize_tweet)
