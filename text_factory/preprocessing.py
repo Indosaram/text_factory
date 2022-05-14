@@ -28,7 +28,7 @@ class KoreanPreprocessor(BasePreprocessor):
 
 class EnglishPreprocessor(BasePreprocessor):
     """
-    Note that you must download relavant dataset before using classes from nltk.
+    Note that you must download relevant dataset before using classes from nltk.
     """
 
     def __init__(self):
@@ -80,7 +80,7 @@ class EnglishPreprocessor(BasePreprocessor):
         def _lemmatize(tokens: Union[List[str], pd.Series]):
             return " ".join(map(lemmatizer.lemmatize, tokens))
 
-        return token_series.apply(lambda x:x.split()).apply(_lemmatize)
+        return token_series.apply(lambda x: x.split()).apply(_lemmatize)
 
     def multiword_tokenize(
         self,

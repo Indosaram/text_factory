@@ -31,4 +31,4 @@ class TopicModeling:
         vis = pyLDAvis.gensim_models.prepare(
             ldamodel, self.corpus, self.dictionary
         )
-        pyLDAvis.show(vis)
+        pyLDAvis.display(vis)
