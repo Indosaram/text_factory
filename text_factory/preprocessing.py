@@ -89,5 +89,5 @@ class EnglishPreprocessor(BasePreprocessor):
     ) -> pd.Series:
         mwe_tokenizer = nltk.tokenize.MWETokenizer(multiwords)
         return text_series.apply(
-            lambda text: " ".join(mwe_tokenizer.tokenize(text.split()))
+            lambda text: mwe_tokenizer.tokenize(text.split())
         )
